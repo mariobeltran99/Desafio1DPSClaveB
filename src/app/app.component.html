@@ -1,0 +1,31 @@
+<!--Componente Inicial-->
+<div class="container">
+    <div class="row" [hidden]="view == true">
+       <div class="col-lg-6 col-xl-6 col-md-6 col-sm-12">
+            <div class="card" style="width: 100%;">
+            <img src="../assets/img/new.jpg" class="card-img-top img-fluid t1" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">Registro de Clientes</h5>
+                    <p class="card-text">Ingreso de campos como: nombre del cliente, DUI, y Vehículo.</p>
+                    <button type="button" class="btn btn-dark" (click)="mostrar1()">Crear Nuevo Cliente</button>
+                </div>
+            </div>
+        </div> 
+        <div class="col-lg-6 col-xl-6 col-md-6 col-sm-12">
+            <div class="card" style="width: 100%;">
+            <img src="../assets/img/pay.jpg" class="card-img-top img-fluid" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">Generar Ticket de Reparación</h5>
+                    <p class="card-text">Ingreso de campos como: nombre del cliente y costo de reparación</p>
+                    <button type="button" class="btn btn-dark" (click)="mostrar2()">Generar Nuevo Ticket</button>
+                </div>
+            </div>
+        </div> 
+    </div>
+    <!--Componente de Clientes-->
+    <app-clientes [hidden]="showmodel1 == true" [viewprincipal]="view" [model1]="showmodel1"></app-clientes>
+    <!--Componente de Reparaciones-->
+    <div class="row" [hidden]="showmodel2 == true">
+
+    </div>
+</div>
