@@ -21,8 +21,8 @@ export class ClientesComponent implements OnInit {
   @Output() conjCliente = new EventEmitter<Array<any>>();
 
   public clienteForm:FormGroup;
-  horizontal:MatSnackBarHorizontalPosition = 'center';
-  vertical:MatSnackBarVerticalPosition = 'bottom';
+  horizontal:MatSnackBarHorizontalPosition = 'right';
+  vertical:MatSnackBarVerticalPosition = 'top';
 
   constructor(private fb:FormBuilder,private snack:MatSnackBar) { }
   visita:number;

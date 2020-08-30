@@ -25,8 +25,8 @@ export class PagosComponent implements OnInit {
   
   public pagosForm: FormGroup;
 
-  horizontal:MatSnackBarHorizontalPosition = 'center';
-  vertical:MatSnackBarVerticalPosition = 'bottom';
+  horizontal:MatSnackBarHorizontalPosition = 'right';
+  vertical:MatSnackBarVerticalPosition = 'top';
   nombre:string;
   dui:string;
   auto: string;
