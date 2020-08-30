@@ -9,7 +9,7 @@
                 <div class="form-group">
                     <label for="name">Nombre del Cliente</label>
                         <select class="form-control" id="name" formControlName="nombre" aria-describedby="nameAlert">
-                          <option *ngFor="let item of clientesReg" value="{{item.dui}}">{{item.nombre}}</option>
+                          <option *ngFor="let item of clientesReg" value="{{item.dui}}">{{item.nombre}} - {{item.dui}}</option>
                         </select>
                         <small id="nameAlert" class="form-text text-danger" *ngIf="esCampoValido('nombre')">{{ obtenerMensajeError('nombre') }}</small>
                 </div>    

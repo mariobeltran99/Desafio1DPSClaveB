@@ -7,7 +7,15 @@
                 <div class="card-body">
                     <h5 class="card-title">Registro de Clientes</h5>
                     <p class="card-text">Ingreso de campos como: nombre del cliente, DUI, y Vehículo.</p>
-                    <button type="button" class="btn btn-dark" (click)="mostrar1()">Crear Nuevo Cliente</button>
+                    <div class="row">
+                        <div class="col">
+                            <button type="button" class="btn btn-dark btn-block" (click)="mostrar1()">Crear Nuevo Cliente</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-dark btn-block" (click)="mostrar3()">Ver Clientes</button>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div> 
@@ -17,7 +25,14 @@
                 <div class="card-body">
                     <h5 class="card-title">Generar Ticket de Reparación</h5>
                     <p class="card-text">Ingreso de campos como: nombre del cliente y costo de reparación</p>
-                    <button type="button" class="btn btn-dark" (click)="mostrar2()">Generar Nuevo Ticket</button>
+                    <div class="row">
+                        <div class="col">
+                            <button type="button" class="btn btn-dark btn-block" (click)="mostrar2()">Generar Nuevo Ticket</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-dark btn-block" (click)="mostrar4()">Ver Historial</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div> 
@@ -37,6 +52,21 @@
                 [clientesReg]="arregloClientes" 
                 (viewOpen)="view = $event" 
                 (hidemodel2)="showmodel2 = $event"
-                (arregloModCliente)="arregloClientes = $event"></app-pagos>
+                (arregloModCliente)="arregloClientes = $event" 
+                (arregloTicket)="arregloHisto = $event"></app-pagos>
+    <!--Componente de tabla de clientes-->
+    <app-tabla-cliente [hidden]="showmodel3 == true" 
+                        [model3]="showmodel3" 
+                        [resultadosCliente]="arregloClientes" 
+                        [viewCentral]="view" 
+                        (viewHome)="view = $event" 
+                        (hidemodel3)="showmodel3 = $event"></app-tabla-cliente>
+    <!--Componente de tabla de reparaciones-->
+    <app-tabla-historial [hidden]="showmodel4 == true" 
+                        [model4]="showmodel4" 
+                        [resultadosHistorial]="arregloHisto" 
+                        [viewhome]="view" 
+                        (viewCen)="view = $event" 
+                        (hidemodel4)="showmodel4 = $event"></app-tabla-historial>
     
 </div>

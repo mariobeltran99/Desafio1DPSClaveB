@@ -61,29 +61,32 @@ export class ClientesComponent implements OnInit {
   guardar(){
     //registro de cliente
     if(this.clienteForm.valid){
-      /*let bandera = false;
-      for(let i=0; i < this.registro.length, i++){
+      let bandera = false;
+      for(let i in this.registro){
           if(this.registro[i].dui == this.clienteForm.get('dui').value){
              bandera = true;
           }
-      }*/
-      this.nameCliente = this.clienteForm.get('nombre').value;
-      this.dui = this.clienteForm.get('dui').value;
-      let marca = this.clienteForm.get('marca').value;
-      let modelo = this.clienteForm.get('modelo').value;
-      this.vehiculo = marca + " - " + modelo;
-      this.visita = 0;
-      this.clienteForm.reset();
-      Object.keys(this.clienteForm.controls).forEach(key => {
-        this.clienteForm.controls[key].setErrors(null);
-      });
-      this.cliente ={
-        "nombre":this.nameCliente,
-        "dui":this.dui,
-        "vehiculo":this.vehiculo,
-        "visita":this.visita
       }
-      this.registro.push(this.cliente);
+      if(bandera == true){
+        console.log('ya existe este dui');
+        this.clienteForm.reset();
+        return;
+      }else{
+        this.nameCliente = this.clienteForm.get('nombre').value;
+        this.dui = this.clienteForm.get('dui').value;
+        let marca = this.clienteForm.get('marca').value;
+        let modelo = this.clienteForm.get('modelo').value;
+        this.vehiculo = marca + " - " + modelo;
+        this.visita = 0;
+        this.clienteForm.reset();
+        this.cliente ={
+          "nombre":this.nameCliente,
+          "dui":this.dui,
+          "vehiculo":this.vehiculo,
+          "visita":this.visita
+        }
+        this.registro.push(this.cliente);
+      }    
     }else{
       return;
     }
@@ -95,9 +98,6 @@ export class ClientesComponent implements OnInit {
     this.hidemodel1.emit(this.model1);
     this.conjCliente.emit(this.registro);
     this.clienteForm.reset();
-    Object.keys(this.clienteForm.controls).forEach(key => {
-      this.clienteForm.controls[key].setErrors(null);
-    });
   }
 
 }

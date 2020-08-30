@@ -5,13 +5,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ClientesComponent } from './clientes/clientes.component';
-import { PagosComponent } from './pagos/pagos.component'
+import { PagosComponent } from './pagos/pagos.component';
+import { TablaClienteComponent } from './tabla-cliente/tabla-cliente.component';
+import { TablaHistorialComponent } from './tabla-historial/tabla-historial.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     ClientesComponent,
-    PagosComponent
+    PagosComponent,
+    TablaClienteComponent,
+    TablaHistorialComponent
   ],
   imports: [
     BrowserModule,

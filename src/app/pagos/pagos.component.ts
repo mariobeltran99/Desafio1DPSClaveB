@@ -78,9 +78,6 @@ export class PagosComponent implements OnInit {
       this.historial.push(this.ticket);
       this.tick = 1;
       this.pagosForm.reset();
-      Object.keys(this.pagosForm.controls).forEach(key => {
-        this.pagosForm.controls[key].setErrors(null);
-      });
     }else{
       return;
     }
@@ -114,9 +111,6 @@ export class PagosComponent implements OnInit {
     this.arregloTicket.emit(this.historial);
     this.arregloModCliente.emit(this.clientesReg);
     this.pagosForm.reset();
-    Object.keys(this.pagosForm.controls).forEach(key => {
-      this.pagosForm.controls[key].setErrors(null);
-    });
   }
 
 }

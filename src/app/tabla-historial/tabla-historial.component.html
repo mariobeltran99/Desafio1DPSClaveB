@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+        <table class="table" *ngIf="resultadosHistorial != null else cas">
+            <thead class="thead-dark text-center">
+              <tr>
+                <th scope="col">Nombre del Cliente</th>
+                <th scope="col">DUI</th>
+                <th scope="col">Vehículo</th>
+                <th scope="col">Costo de Reparación</th>
+                <th scope="col">Descuento</th>
+                <th scope="col">Monto a Descontar</th>
+                <th scope="col">Monto a Pagar</th>
+              </tr>
+            </thead>
+            <tbody class="text-center"> 
+              <tr *ngFor="let item of resultadosHistorial">
+                <th scope="row">{{item.nombre}}</th>
+                <td>{{item.dui}}</td>
+                <td>{{item.auto}}</td>
+                <td>{{item.costo | currency}}</td>
+                <td>{{item.descuento | percent}}</td>
+                <td>{{item.montodesc | currency}}</td>
+                <td>{{item.pago | currency}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <ng-template #cas>
+              <h1 class="text-center">No hay reparaciones registradas.</h1>
+         </ng-template>
+         <br>
+         <br>
+         <button type="button" class="btn btn-dark btn-block" (click)="home()">Regresar</button>
+    </div>
+</div>
+
