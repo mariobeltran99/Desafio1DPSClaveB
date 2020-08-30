@@ -23,9 +23,20 @@
         </div> 
     </div>
     <!--Componente de Clientes-->
-    <app-clientes [hidden]="showmodel1 == true" [viewprincipal]="view" [model1]="showmodel1"></app-clientes>
+    <app-clientes   [hidden]="showmodel1 == true" 
+                    [viewprincipal]="view" 
+                    [model1]="showmodel1"
+                    [registro]="arregloClientes" 
+                    (viewchange)="view = $event" 
+                    (hidemodel1)="showmodel1 = $event" 
+                    (conjCliente)="arregloClientes = $event"></app-clientes>
     <!--Componente de Reparaciones-->
-    <div class="row" [hidden]="showmodel2 == true">
-
-    </div>
+    <app-pagos [hidden]="showmodel2 == true" 
+                [viewPrince]="view" 
+                [model2]="showmodel2" 
+                [clientesReg]="arregloClientes" 
+                (viewOpen)="view = $event" 
+                (hidemodel2)="showmodel2 = $event"
+                (arregloModCliente)="arregloClientes = $event"></app-pagos>
+    
 </div>

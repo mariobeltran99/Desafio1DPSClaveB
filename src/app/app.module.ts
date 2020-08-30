@@ -4,12 +4,14 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ClientesComponent } from './clientes/clientes.component'
+import { ClientesComponent } from './clientes/clientes.component';
+import { PagosComponent } from './pagos/pagos.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    ClientesComponent
+    ClientesComponent,
+    PagosComponent
   ],
   imports: [
     BrowserModule,

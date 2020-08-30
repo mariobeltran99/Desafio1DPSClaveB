@@ -10,6 +10,7 @@ export class AppComponent {
   view:boolean = false;
   showmodel1:boolean = true;
   showmodel2:boolean = true;
+  arregloClientes:Array<any> = [];
   mostrar1(){
     this.view = true;
     this.showmodel1 = false;

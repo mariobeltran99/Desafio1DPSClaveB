@@ -30,9 +30,15 @@
                         </div>
                     </div> 
                 </div>
-                <button type="submit" class="btn btn-success" [disabled]="!clienteForm.valid">Guardar</button>
-              </form>
-              <button type="button" class="btn btn-dark" (click)="back()">Regresar</button>
+                <div class="row">
+                    <div class="col">
+                        <button type="button" class="btn btn-dark btn-block" (click)="back()">Regresar</button>
+                    </div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-success btn-block" [disabled]="!clienteForm.valid">Guardar</button>
+                    </div>
+                </div>
+              </form>           
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
-import { Component, OnInit,Input,Output } from '@angular/core';
+import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder,Validators } from '@angular/forms';
-import { EventEmitter } from 'protractor';
+
 @Component({
   selector: 'app-clientes',
   templateUrl: './clientes.component.html',
@@ -8,10 +8,17 @@ import { EventEmitter } from 'protractor';
 })
 export class ClientesComponent implements OnInit {
 
-  @Input() viewprincipal:boolean = false;
-  @Input() model1:boolean = false; 
-  //@Output() viewchange = new EventEmitter.caller(this.back);
-
+  //vista principal
+  @Input() viewprincipal:boolean;
+  //vista modelo1
+  @Input() model1:boolean; 
+  //Array de Clientes
+  @Input() registro:Array<any>;
+  //enviar estado de vista
+  @Output() viewchange = new EventEmitter<boolean>();
+  @Output() hidemodel1 = new EventEmitter<boolean>();
+  //enviar los clientes
+  @Output() conjCliente = new EventEmitter<Array<any>>();
 
   public clienteForm:FormGroup;
   constructor(private fb:FormBuilder) { }
@@ -20,13 +27,12 @@ export class ClientesComponent implements OnInit {
   vehiculo:string;
   dui:string;
   cliente:any;
-  registro:Array<any> = [];
   ngOnInit(): void {
     this.clienteForm = this.fb.group({
-      nombre: new FormControl(null,[Validators.required,Validators.pattern('/[a-zA-Z]+$/')]),
+      nombre: new FormControl(null,[Validators.required,Validators.pattern(/[a-zA-Z]+$/)]),
       dui: new FormControl(null,[Validators.required,Validators.pattern('[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9]')]),
-      marca: new FormControl(null,[Validators.required,Validators.pattern('/[a-zA-Z]+$/')]),
-      model: new FormControl(null,[Validators.required])
+      marca: new FormControl(null,[Validators.required,Validators.pattern(/[a-zA-Z]+$/)]),
+      modelo: new FormControl(null,[Validators.required])
     });
   }
   //validacion si fue tocado el control del formulario
@@ -53,7 +59,14 @@ export class ClientesComponent implements OnInit {
     return mensaje;
   }
   guardar(){
+    //registro de cliente
     if(this.clienteForm.valid){
+      /*let bandera = false;
+      for(let i=0; i < this.registro.length, i++){
+          if(this.registro[i].dui == this.clienteForm.get('dui').value){
+             bandera = true;
+          }
+      }*/
       this.nameCliente = this.clienteForm.get('nombre').value;
       this.dui = this.clienteForm.get('dui').value;
       let marca = this.clienteForm.get('marca').value;
@@ -78,6 +91,13 @@ export class ClientesComponent implements OnInit {
   back(){
     this.viewprincipal = false;
     this.model1 = true;
+    this.viewchange.emit(this.viewprincipal);
+    this.hidemodel1.emit(this.model1);
+    this.conjCliente.emit(this.registro);
+    this.clienteForm.reset();
+    Object.keys(this.clienteForm.controls).forEach(key => {
+      this.clienteForm.controls[key].setErrors(null);
+    });
   }
 
 }
