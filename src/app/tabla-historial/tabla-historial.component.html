@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
-        <table class="table" *ngIf="resultadosHistorial != null else cas">
+        <table class="table" [hidden]="viewtable() === true">
             <thead class="thead-dark text-center">
               <tr>
                 <th scope="col">Nombre del Cliente</th>
@@ -24,9 +24,7 @@
               </tr>
             </tbody>
           </table>
-          <ng-template #cas>
-              <h1 class="text-center">No hay reparaciones registradas.</h1>
-         </ng-template>
+          <h1 class="text-center" [hidden]="viewtable() === false">No hay reparaciones registradas.</h1>
          <br>
          <br>
          <button type="button" class="btn btn-dark btn-block" (click)="home()">Regresar</button>

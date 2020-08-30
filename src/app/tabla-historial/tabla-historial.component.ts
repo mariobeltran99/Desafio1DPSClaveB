@@ -14,6 +14,7 @@ export class TablaHistorialComponent implements OnInit {
   @Output() viewCen = new EventEmitter<boolean>();
   @Output() hidemodel4 = new EventEmitter<boolean>();
 
+  tab:boolean = true;
   constructor() { }
 
   ngOnInit(): void {
@@ -23,6 +24,14 @@ export class TablaHistorialComponent implements OnInit {
     this.viewhome = false;
     this.viewCen.emit(this.viewhome);
     this.hidemodel4.emit(this.model4);
+  }
+  viewtable():boolean{
+    if(this.resultadosHistorial.length === 0){
+       this.tab= true;
+    }else{
+      this.tab = false;
+    }
+    return this.tab;
   }
 
 }

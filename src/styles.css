@@ -1,0 +1,7 @@
+footer, nav .st{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    background-color: #343a40;
+    padding: 10px;
+}

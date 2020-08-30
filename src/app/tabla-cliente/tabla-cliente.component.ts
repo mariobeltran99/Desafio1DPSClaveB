@@ -14,6 +14,7 @@ export class TablaClienteComponent implements OnInit {
   @Output() viewHome = new EventEmitter<boolean>();
   @Output() hidemodel3 = new EventEmitter<boolean>();
   
+  tab:boolean;
   constructor() { }
 
   ngOnInit(): void {
@@ -23,6 +24,14 @@ export class TablaClienteComponent implements OnInit {
     this.viewCentral = false;
     this.viewHome.emit(this.viewCentral);
     this.hidemodel3.emit(this.model3);
+  }
+  viewtable():boolean{
+    if(this.resultadosCliente.length === 0){
+      this.tab = true;
+    }else{
+      this.tab = false;
+    }
+    return this.tab;
   }
 
 }
