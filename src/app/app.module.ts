@@ -7,7 +7,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ClientesComponent } from './clientes/clientes.component';
 import { PagosComponent } from './pagos/pagos.component';
 import { TablaClienteComponent } from './tabla-cliente/tabla-cliente.component';
-import { TablaHistorialComponent } from './tabla-historial/tabla-historial.component'
+import { TablaHistorialComponent } from './tabla-historial/tabla-historial.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { TablaHistorialComponent } from './tabla-historial/tabla-historial.compo
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

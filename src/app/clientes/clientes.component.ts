@@ -1,6 +1,6 @@
 import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder,Validators } from '@angular/forms';
-
+import { MatSnackBar,MatSnackBarHorizontalPosition,MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-clientes',
   templateUrl: './clientes.component.html',
@@ -21,7 +21,10 @@ export class ClientesComponent implements OnInit {
   @Output() conjCliente = new EventEmitter<Array<any>>();
 
   public clienteForm:FormGroup;
-  constructor(private fb:FormBuilder) { }
+  horizontal:MatSnackBarHorizontalPosition = 'center';
+  vertical:MatSnackBarVerticalPosition = 'bottom';
+
+  constructor(private fb:FormBuilder,private snack:MatSnackBar) { }
   visita:number;
   nameCliente:number;
   vehiculo:string;
@@ -68,7 +71,7 @@ export class ClientesComponent implements OnInit {
           }
       }
       if(bandera == true){
-        console.log('ya existe este dui');
+        this.openSnackBar('Ya existe este DUI')
         this.clienteForm.reset();
         return;
       }else{
@@ -86,6 +89,7 @@ export class ClientesComponent implements OnInit {
           "visita":this.visita
         }
         this.registro.push(this.cliente);
+        this.openSnackBar('Registrado Exitosamente');
       }    
     }else{
       return;
@@ -98,6 +102,13 @@ export class ClientesComponent implements OnInit {
     this.hidemodel1.emit(this.model1);
     this.conjCliente.emit(this.registro);
     this.clienteForm.reset();
+  }
+  openSnackBar(mensaje:string) {
+    this.snack.open(mensaje, 'Cerrar', {
+      duration: 5000,
+      horizontalPosition: this.horizontal,
+      verticalPosition: this.vertical
+    });
   }
 
 }

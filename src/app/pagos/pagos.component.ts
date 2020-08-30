@@ -1,5 +1,6 @@
 import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder,Validators } from '@angular/forms';
+import { MatSnackBar,MatSnackBarHorizontalPosition,MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-pagos',
   templateUrl: './pagos.component.html',
@@ -24,6 +25,8 @@ export class PagosComponent implements OnInit {
   
   public pagosForm: FormGroup;
 
+  horizontal:MatSnackBarHorizontalPosition = 'center';
+  vertical:MatSnackBarVerticalPosition = 'bottom';
   nombre:string;
   dui:string;
   auto: string;
@@ -34,12 +37,12 @@ export class PagosComponent implements OnInit {
   ticket:any;
   historial:Array<any> = [];
   tick:number;
-  constructor(private fb:FormBuilder) { }
+  constructor(private fb:FormBuilder,private snack:MatSnackBar) { }
 
   ngOnInit(): void {
     this.pagosForm = this.fb.group({
       nombre: new FormControl(null,[Validators.required]),
-      costo: new FormControl(null,[Validators.required,Validators.pattern('^([0-9]+(\.?[0-9]?[0-9]?)?)')])
+      costo: new FormControl(null,[Validators.required,Validators.pattern('^([0-9]+(\.?[0-9]?[0-9]?)?)'),Validators.min(5.00)])
     });
     this.tick = 0;
   }
@@ -76,6 +79,7 @@ export class PagosComponent implements OnInit {
         "pago":this.montopago
       }
       this.historial.push(this.ticket);
+      this.openSnackBar('Registrado Exitosamente');
       this.tick = 1;
       this.pagosForm.reset();
     }else{
@@ -90,6 +94,8 @@ export class PagosComponent implements OnInit {
     if(field == 'costo'){
       if(this.pagosForm.get(field).hasError('pattern')){
         mensaje = 'Solo números con formato (0.00)';
+      }else if(this.pagosForm.get(field).hasError('min')){
+        mensaje = 'Debe ser mínimo $5.00';
       }
     }
     return mensaje;
@@ -113,4 +119,11 @@ export class PagosComponent implements OnInit {
     this.pagosForm.reset();
   }
 
+  openSnackBar(mensaje:string) {
+    this.snack.open(mensaje, 'Cerrar', {
+      duration: 5000,
+      horizontalPosition: this.horizontal,
+      verticalPosition: this.vertical
+    });
+  }
 }
